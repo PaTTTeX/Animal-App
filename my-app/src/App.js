@@ -6,15 +6,19 @@ import NavBar from './Components/NavBar';
 
 function App() {
   return (
-    <Router>
-      <NavBar/>
-      <Routes>
-        <Route path="/home" element={<Content />} />
-        <Route path="/read" element={<h1>Read Component</h1>} />
-        <Route path="/create" element={<h1>Create Component</h1>} />
-      </Routes>
-      <Footer />
-    </Router>
+    <div className="d-flex flex-column min-vh-100">
+      <Router>
+        <NavBar />
+        <main className="flex-grow-1">
+          <Routes>
+            <Route path="/home" element={<Content />} />
+            <Route path="/read" element={<h1>Read Component</h1>} />
+            <Route path="/create" element={<h1>Create Component</h1>} />
+          </Routes>
+        </main>
+        <Footer />
+      </Router>
+    </div>
   );
 }
 

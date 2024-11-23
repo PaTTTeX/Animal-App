@@ -11,9 +11,7 @@ const NavBar = () => {
         <Navbar bg="dark" data-bs-theme="dark">
             <Container>
                 <Navbar.Brand href="/">
-                    <img height="40px" width="30px"
-                        src={Logo}>
-                    </img>
+                    <img height="40px" width="30px" src={Logo}></img>
                 </Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/">Home</Nav.Link>
