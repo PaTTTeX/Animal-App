@@ -3,12 +3,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from '../Photos/Logo.png';
+import '../App.css';
 
 
 
 const NavBar = () => {
     return (
-        <Navbar bg="dark" data-bs-theme="dark">
+        <Navbar className="navbar navbar-dark-green" variant="dark" expand="lg">
             <Container>
                 <Navbar.Brand href="/">
                     <img height="40px" width="30px" src={Logo}></img>
