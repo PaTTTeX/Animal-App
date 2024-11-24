@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container } from "react-bootstrap";
 import axios from "axios";
+import '../App.css';
 
 const Add = () => {
     // State variables
@@ -9,12 +10,12 @@ const Add = () => {
     const [species, setSpecies] = useState('');
     const [age, setAge] = useState('');
     const [habitat, setHabitat] = useState('');
-    const [imageUrl, setImageUrl] = useState(''); // New state for image URL
+    const [imageUrl, setImageUrl] = useState('');
 
     // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        const animal = { name, species, age, habitat, imageUrl }; // Include imageUrl
+        const animal = { name, species, age, habitat, imageUrl }; 
         console.log(animal);
 
         axios.post('http://localhost:4000/api/animals', animal)
@@ -28,7 +29,7 @@ const Add = () => {
 
     return (
         <Container>
-            <h3>Add New Animal</h3>
+            <h3 className="col-md-8 text-center" style={{margin: '1rem', width: '100%'}}>Add New Animal</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Add Animal Name:</Form.Label>
@@ -49,7 +50,7 @@ const Add = () => {
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Label>Add Animal Age:</Form.Label>
+                    <Form.Label>Add Animal Life Span:</Form.Label>
                     <Form.Control 
                         type="number" 
                         value={age} 
