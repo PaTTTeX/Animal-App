@@ -40,3 +40,24 @@ mongoose.connect(process.env.DB_CONNECTION_STRING)
 
 // schema
 
+const animalSchema = new mongoose.Schema({
+    name: String,
+    species: String,
+    age: Number,
+    habitat: String,
+    imageUrl: String, 
+});
+
+// model
+const Animal = mongoose.model("Animal", animalSchema);
+
+// routes
+app.get("/api/animals", async (req, res) => {
+	try {
+		const animals = await Animal.find();
+		res.json({ animals });
+	} catch (err) {
+		res.status(500).json({ error: "Failed to fetch animals" });
+	}
+});
+
