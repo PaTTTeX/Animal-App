@@ -61,3 +61,38 @@ app.get("/api/animals", async (req, res) => {
 	}
 });
 
+app.post("/api/animals", async (req, res) => {
+	try {
+		const { name, species, age, habitat, imageUrl } = req.body; 
+		const newAnimal = new Animal({ name, species, age, habitat, imageUrl });
+		await newAnimal.save();
+		res.status(201).json({
+			message: "Animal added successfully",
+			animal: newAnimal,
+		});
+	} catch (err) {
+		res.status(500).json({ error: "Failed to add animal" });
+	}
+});
+
+
+app.delete("/api/animals/:id", async (req, res) => {
+	try {
+		const { id } = req.params;
+		await Animal.findByIdAndDelete(id);
+		res.json({ message: "Animal deleted successfully" });
+	} catch (err) {
+		res.status(500).json({ error: "Failed to delete animal" });
+	}
+});
+
+// error handling
+app.use((err, req, res, next) => {
+	console.error(err.stack);
+	res.status(500).send("Something went wrong!");
+});
+
+// start server
+app.listen(port, () => {
+	console.log(`Server is running on http://localhost:${port}`);
+});
