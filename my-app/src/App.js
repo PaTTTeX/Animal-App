@@ -3,6 +3,7 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Content from './Components/Content';
 import Add from './Pages/Add';
+import Read from './Pages/Read';
 import NavBar from './Components/NavBar';
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
         <main className="flex-grow-1">
           <Routes>
             <Route path="/home" element={<Content />} />
-            <Route path="/read" element={<h1>Read Component</h1>} />
             <Route path="/add" element={<Add/>} />
+            <Route path="/read" element={<Read/>} />
           </Routes>
         </main>
         <Footer />
