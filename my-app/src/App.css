@@ -17,7 +17,6 @@
   color: #ffffff !important; 
   text-align: center;
   padding: 1rem 0; 
-  border-bottom: var(--bs-card-border-width) solid rgb(255 255 255);
 }
 
 .footer-container {
@@ -37,7 +36,8 @@ p.mb-0 {
 .animal-list {
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch; 
+  align-items: stretch;
+  justify-content: center; 
 }
 
 
