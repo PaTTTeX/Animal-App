@@ -79,7 +79,7 @@ const Add = () => {
                             />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit">
+                        <Button className="btn-redirection" variant="primary" type="submit">
                             Add Animal
                         </Button>
                     </Form>
