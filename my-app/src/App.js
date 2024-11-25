@@ -3,7 +3,8 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Content from './Components/Content';
 import Add from './Pages/Add';
-import Read from './Pages/Read';
+import View from './Pages/View';
+import Edit from './Pages/Edit';
 import NavBar from './Components/NavBar';
 
 function App() {
@@ -15,7 +16,10 @@ function App() {
           <Routes>
             <Route path="/home" element={<Content />} />
             <Route path="/add" element={<Add/>} />
-            <Route path="/read" element={<Read/>} />
+            <Route path="/view" element={<View/>} />
+            <Route path="/edit/:id" element={<Edit />} />
+
+            
           </Routes>
         </main>
         <Footer />

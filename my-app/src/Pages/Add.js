@@ -29,58 +29,62 @@ const Add = () => {
 
     return (
         <Container>
-            <h3 className="col-md-8 text-center" style={{margin: '1rem', width: '100%'}}>Add New Animal</h3>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Add Animal Name:</Form.Label>
-                    <Form.Control 
-                        type="text" 
-                        value={name} 
-                        onChange={(e) => setName(e.target.value)} 
-                    />
-                </Form.Group>
+            <div className="row justify-content-center" style={{ width: '100%' }}>
+                <div className="col-md-8" style={{ margin: '1rem' }}>
+                    <h3 className="text-center" style={{ marginBottom: '1rem' }}>Add New Animal</h3>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group>
+                            <Form.Label>Add Animal Name:</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                value={name} 
+                                onChange={(e) => setName(e.target.value)} 
+                            />
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Add Animal Species:</Form.Label>
-                    <Form.Control 
-                        type="text" 
-                        value={species} 
-                        onChange={(e) => setSpecies(e.target.value)} 
-                    />
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Add Animal Species:</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                value={species} 
+                                onChange={(e) => setSpecies(e.target.value)} 
+                            />
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Add Animal Life Span:</Form.Label>
-                    <Form.Control 
-                        type="number" 
-                        value={age} 
-                        onChange={(e) => setAge(e.target.value)} 
-                    />
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Add Animal Life Span:</Form.Label>
+                            <Form.Control 
+                                type="number" 
+                                value={age} 
+                                onChange={(e) => setAge(e.target.value)} 
+                            />
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Add Animal Habitat:</Form.Label>
-                    <Form.Control 
-                        type="text" 
-                        value={habitat} 
-                        onChange={(e) => setHabitat(e.target.value)} 
-                    />
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Add Animal Habitat:</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                value={habitat} 
+                                onChange={(e) => setHabitat(e.target.value)} 
+                            />
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Add Animal Image URL:</Form.Label>
-                    <Form.Control 
-                        type="text" 
-                        value={imageUrl} 
-                        onChange={(e) => setImageUrl(e.target.value)} 
-                        placeholder="Enter image URL" 
-                    />
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Add Animal Image URL:</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                value={imageUrl} 
+                                onChange={(e) => setImageUrl(e.target.value)} 
+                                placeholder="Enter image URL" 
+                            />
+                        </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Add Animal
-                </Button>
-            </Form>
+                        <Button variant="primary" type="submit">
+                            Add Animal
+                        </Button>
+                    </Form>
+                </div>
+            </div>
         </Container>
     );
 };
