@@ -30,22 +30,22 @@ app.use(function (req, res, next) {
 
 // connect to MongoDB
 mongoose.connect(process.env.DB_CONNECTION_STRING)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-  });
+	.then(() => {
+		console.log("Connected to MongoDB");
+	})
+	.catch((err) => {
+		console.error("MongoDB connection error:", err);
+	});
 
 
 // schema
 
 const animalSchema = new mongoose.Schema({
-    name: String,
-    species: String,
-    age: Number,
-    habitat: String,
-    imageUrl: String, 
+	name: String,
+	species: String,
+	age: Number,
+	habitat: String,
+	imageUrl: String,
 });
 
 // model
@@ -63,7 +63,7 @@ app.get("/api/animals", async (req, res) => {
 
 app.post("/api/animals", async (req, res) => {
 	try {
-		const { name, species, age, habitat, imageUrl } = req.body; 
+		const { name, species, age, habitat, imageUrl } = req.body;
 		const newAnimal = new Animal({ name, species, age, habitat, imageUrl });
 		await newAnimal.save();
 		res.status(201).json({
@@ -85,6 +85,38 @@ app.delete("/api/animals/:id", async (req, res) => {
 		res.status(500).json({ error: "Failed to delete animal" });
 	}
 });
+
+app.get('/api/animal/:id', async (req, res) => {
+	try {
+		const animal = await animalModel.findById(req.params.id);
+		if (!animal) {
+			return res.status(404).send("Animal not found");
+		}
+		res.send(animal);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Server error");
+	}
+});
+
+
+app.put('/api/animal/:id', async (req, res) => {
+	try {
+		const updatedAnimal = await animalModel.findByIdAndUpdate(
+			req.params.id,
+			req.body,
+			{ new: true } // Return the updated animal
+		);
+		if (!updatedAnimal) {
+			return res.status(404).send("Animal not found");
+		}
+		res.send(updatedAnimal);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Server error");
+	}
+});
+
 
 // error handling
 app.use((err, req, res, next) => {
