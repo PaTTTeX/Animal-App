@@ -1,0 +1,10 @@
+.btn-primary {
+    background-color: #064635;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 5px;
+    cursor: pointer;
+}
