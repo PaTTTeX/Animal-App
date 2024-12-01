@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import '../App.css';
 
@@ -11,6 +12,7 @@ const Add = () => {
     const [age, setAge] = useState('');
     const [habitat, setHabitat] = useState('');
     const [imageUrl, setImageUrl] = useState('');
+    const navigate = useNavigate();
 
     // Handle form submission
     const handleSubmit = (e) => {
@@ -21,6 +23,7 @@ const Add = () => {
         axios.post('http://localhost:4000/api/animals', animal)
             .then((res) => {
                 console.log(res.data);
+                navigate('/view');
             })
             .catch((err) => {
                 console.error(err);

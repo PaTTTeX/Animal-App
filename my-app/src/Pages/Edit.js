@@ -32,7 +32,7 @@ export default function EditAnimal(props) {
     axios.put('http://localhost:4000/api/animal/' + id, updatedAnimal)
       .then((res) => {
         console.log(res.data);
-        navigate('/view-animals'); // Redirect to the animals list
+        navigate('/view'); // Redirect to the animals list
       });
   };
 
