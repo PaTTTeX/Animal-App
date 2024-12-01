@@ -5,16 +5,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from '../Photos/Logo.png';
 import '../App.css';
 
-
-
 const NavBar = () => {
     return (
         <Navbar className="navbar navbar-dark-green" variant="dark" expand="lg">
             <Container>
+                {/* Brand logo */}
                 <Navbar.Brand href="/">
-                    <img height="40px" width="30px" src={Logo}></img>
+                    <img height="40px" width="30px" src={Logo} alt="Logo"></img>
                 </Navbar.Brand>
                 <Nav className="me-auto">
+                    {/* Navigation links */}
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/add">Add Animal</Nav.Link>
                     <Nav.Link href="/view">Manage Animals</Nav.Link>

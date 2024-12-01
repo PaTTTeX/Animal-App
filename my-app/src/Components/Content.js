@@ -7,15 +7,15 @@ function Content() {
   return (
     <div className="container py-5">
       <h1 className="mb-4 text-center">Welcome to AnimalList!</h1>
-      <p className="text-center mb-5">
+      <h3 className="text-center mb-5">
         AnimalList is an intuitive app designed to help you manage information about animals. You can add, view, and edit animal details easily. Start by selecting an option below!
-      </p>
+      </h3>
 
       <div className="row justify-content-center">
-        {/* Card 1: Add Animal */}
+        {/* Card for adding an animal */}
         <div className="col-md-4 mb-4 d-flex">
           <div className="card shadow-sm text-center flex-fill">
-            <div className="card-body py-5">
+            <div className="card-body d-flex flex-column py-2">
               <img
                 src={addImage}
                 alt="Add Animal"
@@ -24,18 +24,19 @@ function Content() {
               />
               <h5 className="card-title">Add an Animal</h5><br />
               <p className="card-text">Easily add new animal information to the system.</p>
-              <br />
-              <Link to="/add" className="btn btn-primary">
-                Go to Add Page
-              </Link>
+              <div className="mt-auto"> {/* Button at the bottom of the card */}
+                <Link to="/add" className="btn btn-primary">
+                  Go to Add Page
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Card 2: Edit Animals */}
+        {/* Card for editing animals */}
         <div className="col-md-4 mb-4 d-flex">
           <div className="card shadow-sm text-center flex-fill">
-            <div className="card-body py-5">
+            <div className="card-body d-flex flex-column py-2">
               <img
                 src={viewImage}
                 alt="Edit Animals"
@@ -44,9 +45,11 @@ function Content() {
               />
               <h5 className="card-title">Edit Animals</h5><br />
               <p className="card-text">Browse and Edit/Delete the list of animals in the database.</p>
-              <Link to="/view" className="btn btn-success">
-                Go to View Page
-              </Link>
+              <div className="mt-auto"> {/* Button at the bottom of the card */}
+                <Link to="/view" className="btn btn-success">
+                  Go to View Page
+                </Link>
+              </div>
             </div>
           </div>
         </div>
