@@ -25,7 +25,7 @@ const View = () => {
   }, []);  // Empty dependency array ensures it runs only once on mount
 
   return (
-    <div className="container min-width: 100%;" class="Home-Container">
+    <div className="Home-Container container min-width: 100%;">
       <div className="row justify-content-center width: 100%;" style={{ width: "100%" }}>
         <div className="col-md-8 text-center" style={{ margin: "1rem" }}>
           <h3>Animal List</h3>
