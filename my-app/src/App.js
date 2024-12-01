@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Importing routing components
 import Footer from './Components/Footer'; // Import Footer component
-import Content from './Components/Content'; // Import Content component for home page
+import Content from './Pages/Content'; // Import Content component for home page
 import Add from './Pages/Add'; // Import Add page for adding animals
 import View from './Pages/View'; // Import View page for managing animals
 import Edit from './Pages/Edit'; // Import Edit page for editing animal details
