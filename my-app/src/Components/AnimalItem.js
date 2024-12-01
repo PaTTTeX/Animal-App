@@ -46,7 +46,7 @@ const AnimalItem = (props) => {
               <img
                 src={myanimal.imageUrl} // Animal image
                 alt={myanimal.name} // Alt text for the image
-                style={{ maxWidth: "100%", height: "100%", borderRadius: "5px" }} // Image styles
+                style={{ maxWidth: "100%", height: '18.4rem', borderRadius: "5px" }} // Image styles
               />
               <div style={{ textAlign: "left" }}>
                 <strong>Species:</strong> {myanimal.species} <br />
