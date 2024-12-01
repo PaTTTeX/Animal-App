@@ -13,21 +13,22 @@ const AnimalItem = (props) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    axios.delete(`http://localhost:4000/api/animal/${myanimal._id}`)
-      .then(() => {
-        props.Reload(); // Refresh the animal list after deletion
-      })
-      .catch((error) => {
-        console.error("Error deleting animal:", error);
-      });
-  };
+    axios.delete(`http://localhost:4000/api/animals/${myanimal._id}`) // Change "animal" to "animals"
+        .then(() => {
+            props.Reload();
+        })
+        .catch((error) => {
+            console.error("Error deleting animal:", error);
+        });
+};
+
 
   return (
     <div className="mb-2">
       <Card
         style={{
-          width: "18rem",
-          height: "33rem",
+          width: "25rem",
+          height: "40rem",
           backgroundColor: "#064635",
           margin: "5px",
           display: "flex",
