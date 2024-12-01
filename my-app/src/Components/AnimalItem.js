@@ -1,78 +1,79 @@
-import axios from "axios";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import axios from "axios"; // Axios for making HTTP requests
+import Card from "react-bootstrap/Card"; // Bootstrap Card component
+import Button from "react-bootstrap/Button"; // Bootstrap Button component
+import { Link } from "react-router-dom"; // Link component for navigation
+import { useEffect } from "react"; // React hook for side effects
 
 const AnimalItem = (props) => {
-  const { myanimal } = props;
+  const { myanimal } = props; // Destructure animal data from props
 
+  // Log the animal data whenever it changes
   useEffect(() => {
     console.log("Animal Item Rendered:", myanimal);
-  }, [myanimal]);
+  }, [myanimal]); // Dependency array to rerun effect when `myanimal` changes
 
+  // Handle animal deletion
   const handleDelete = (e) => {
-    e.preventDefault();
-    axios.delete(`http://localhost:4000/api/animals/${myanimal._id}`) // Change "animal" to "animals"
+    e.preventDefault(); // Prevent default form submission
+    axios.delete(`http://localhost:4000/api/animals/${myanimal._id}`) // Delete animal by ID
         .then(() => {
-            props.Reload();
+            props.Reload(); // Reload the list after deletion
         })
         .catch((error) => {
-            console.error("Error deleting animal:", error);
+            console.error("Error deleting animal:", error); // Log errors
         });
-};
-
+  };
 
   return (
     <div className="mb-2">
-      <Card
+      <Card // Card with styles
         style={{
-          width: "25rem",
-          height: "40rem",
-          backgroundColor: "#064635",
-          margin: "5px",
-          display: "flex",
+          width: "25rem", 
+          height: "40rem", 
+          backgroundColor: "white",
+          margin: "5px", 
+          display: "flex", 
           flexDirection: "column",
           justifyContent: "space-between",
         }}
       >
         <div>
           <Card.Header style={{ fontWeight: "bold", fontSize: "1.4rem" }}>
-            {myanimal.name}
+            {myanimal.name} {/* Animal name */}
           </Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <img
-                src={myanimal.imageUrl}
-                alt={myanimal.name}
-                style={{ maxWidth: "100%", height: "100%", borderRadius: "5px" }}
+                src={myanimal.imageUrl} // Animal image
+                alt={myanimal.name} // Alt text for the image
+                style={{ maxWidth: "100%", height: "100%", borderRadius: "5px" }} // Image styles
               />
-              <footer style={{ textAlign: "left" }}>
+              <div style={{ textAlign: "left" }}>
                 <strong>Species:</strong> {myanimal.species} <br />
                 <strong>Life Span:</strong> {myanimal.age} <br />
-                <strong>Habitat:</strong> {myanimal.habitat}
-              </footer>
+                <strong>Habitat:</strong> {myanimal.habitat} 
+              </div>
             </blockquote>
           </Card.Body>
         </div>
         <div
           style={{
-            padding: "10px",
+            padding: "10px", 
             textAlign: "center",
-            borderTop: "1px solid rgb(255, 255, 255)",
+            borderTop: "2px solid rgb(0, 0, 0)",
           }}
         >
           <Link
-            to={`/edit/${myanimal._id}`}
-            className="btn btn-primary"
-            style={{ width: "100%" }}
+            to={`/edit/${myanimal._id}`} // Link to the edit page for the specific animal
+            className="btn btn-primary" // Bootstrap button style
+            style={{ width: "100%" }} // Full-width button
           >
             Edit
           </Link>
           <Button
-            variant="danger"
-            style={{ width: "100%", marginTop: "5px" }}
-            onClick={handleDelete}
+            variant="danger" // Danger button for delete action
+            style={{ width: "100%", marginTop: "5px" }} // Full-width and top margin
+            onClick={handleDelete} // Trigger handleDelete on click
           >
             Delete
           </Button>
@@ -82,4 +83,4 @@ const AnimalItem = (props) => {
   );
 };
 
-export default AnimalItem;
+export default AnimalItem; // Export the AnimalItem component

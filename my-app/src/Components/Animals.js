@@ -1,19 +1,19 @@
-import AnimalItem from "./AnimalItem";
+import AnimalItem from "./AnimalItem"; // Import AnimalItem component
 
 const Animals = (props) => {
-  const { myAnimals, ReloadData } = props;
+  const { myAnimals, ReloadData } = props; // Destructure props
 
-  if (!myAnimals.length) {
-    return <p>No animals to display.</p>;
+  if (!myAnimals.length) { // Check if there are no animals
+    return <p>No animals to display.</p>; // Display message if no animals
   }
 
   return (
-    <div className="animal-list">
-      {myAnimals.map((animal) => (
-        <AnimalItem myanimal={animal} key={animal._id} Reload={ReloadData} />
+    <div className="animal-list"> 
+      {myAnimals.map((animal) => ( // Loop through animals
+        <AnimalItem myanimal={animal} key={animal._id} Reload={ReloadData} /> // Display each animal
       ))}
     </div>
   );
 };
 
-export default Animals;
+export default Animals; // Export Animals component
