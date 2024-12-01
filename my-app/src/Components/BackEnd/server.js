@@ -1,35 +1,35 @@
-// Import necessary libraries(Required to run the server)
-const express = require("express");    // Express framework for building the API
-const mongoose = require("mongoose");  // MongoDB library for database interaction
-const cors = require("cors");          // Middleware for enabling Cross-Origin requests
-const dotenv = require("dotenv");      // For loading environment variables
+// Import necessary libraries
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const dotenv = require("dotenv");
 
-const port = 4000;  // Port where the server will run
+const port = 4000;  // Server port
 
-// Create an Express app
+// Create Express app
 const app = express();
 
-// Load environment variables (like database connection string)
+// Load environment variables
 dotenv.config();
 
-// Middleware to handle JSON data and allow CORS (Cross-Origin Resource Sharing)
-app.use(express.json());  // Parse incoming JSON requests
-app.use(cors());  // Enable CORS for all routes
+// Middleware for JSON parsing and enabling CORS
+app.use(express.json());
+app.use(cors());
 
-// Enable specific CORS headers for more control
+// Enable specific CORS headers
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();  // Continue to the next middleware/route
+    next();
 });
 
-// Connect to MongoDB database
-mongoose.connect(process.env.DB_CONNECTION_STRING)  // Use the connection string from environment variables
-    .then(() => console.log("Connected to MongoDB"))  // Log success message
-    .catch((err) => console.error("MongoDB connection error:", err));  // Log error if connection fails
+// Connect to MongoDB
+mongoose.connect(process.env.DB_CONNECTION_STRING)
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((err) => console.error("MongoDB connection error:", err));
 
-// Define the Animal schema (structure for animal data in MongoDB)
+// Define Animal schema
 const animalSchema = new mongoose.Schema({
     name: String,
     species: String,
@@ -38,81 +38,73 @@ const animalSchema = new mongoose.Schema({
     imageUrl: String,
 });
 
-// Create a model based on the schema
+// Create Animal model
 const Animal = mongoose.model("Animal", animalSchema);
 
-// Route to fetch all animals
+// Fetch all animals
 app.get("/api/animals", async (req, res) => {
     try {
-        const animals = await Animal.find();  // Get all animals from the database
-        res.json({ animals });  // Return animals as JSON
+        const animals = await Animal.find();
+        res.json({ animals });
     } catch (err) {
-        res.status(500).json({ error: "Failed to fetch animals" });  // Handle any errors
+        res.status(500).json({ error: "Failed to fetch animals" });
     }
 });
 
-// Route to add a new animal
+// Add a new animal
 app.post("/api/animals", async (req, res) => {
     try {
-        const { name, species, age, habitat, imageUrl } = req.body;  // Get data from request body
-        const newAnimal = new Animal({ name, species, age, habitat, imageUrl });  // Create new animal document
-        await newAnimal.save();  // Save the new animal to the database
-        res.status(201).json({ message: "Animal added successfully", animal: newAnimal });  // Send success response
+        const { name, species, age, habitat, imageUrl } = req.body;
+        const newAnimal = new Animal({ name, species, age, habitat, imageUrl });
+        await newAnimal.save();
+        res.status(201).json({ message: "Animal added successfully", animal: newAnimal });
     } catch (err) {
-        res.status(500).json({ error: "Failed to add animal" });  // Handle errors
+        res.status(500).json({ error: "Failed to add animal" });
     }
 });
 
-// Route to delete an animal by ID
+// Delete an animal by ID
 app.delete("/api/animals/:id", async (req, res) => {
     try {
-        const { id } = req.params;  // Get animal ID from route params
-        await Animal.findByIdAndDelete(id);  // Delete animal from database by ID
-        res.json({ message: "Animal deleted successfully" });  // Send success response
+        const { id } = req.params;
+        await Animal.findByIdAndDelete(id);
+        res.json({ message: "Animal deleted successfully" });
     } catch (err) {
-        res.status(500).json({ error: "Failed to delete animal" });  // Handle errors
+        res.status(500).json({ error: "Failed to delete animal" });
     }
 });
 
-// Route to get a specific animal by ID
+// Get a specific animal by ID
 app.get('/api/animal/:id', async (req, res) => {
     try {
-        const animal = await Animal.findById(req.params.id);  // Find animal by ID
-        if (!animal) {
-            return res.status(404).send("Animal not found");  // If not found, send 404 error
-        }
-        res.send(animal);  // Send the found animal data
+        const animal = await Animal.findById(req.params.id);
+        if (!animal) return res.status(404).send("Animal not found");
+        res.send(animal);
     } catch (error) {
-        console.error(error);
-        res.status(500).send("Server error");  // Handle errors
+        res.status(500).send("Server error");
     }
 });
 
-// Route to update an animal by ID
+// Update an animal by ID
 app.put('/api/animal/:id', async (req, res) => {
     try {
         const updatedAnimal = await Animal.findByIdAndUpdate(
-            req.params.id,  // Animal ID from URL params
-            req.body,       // Data to update from request body
-            { new: true }    // Return updated animal
+            req.params.id, req.body, { new: true }
         );
-        if (!updatedAnimal) {
-            return res.status(404).send("Animal not found");  // If not found, send 404 error
-        }
-        res.send(updatedAnimal);  // Send updated animal data
+        if (!updatedAnimal) return res.status(404).send("Animal not found");
+        res.send(updatedAnimal);
     } catch (error) {
-        console.error(error);
-        res.status(500).send("Server error");  // Handle errors
+        res.status(500).send("Server error");
     }
 });
 
-// Error handling middleware (for catching all other errors)
+// Error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);  // Log the error stack
-    res.status(500).send("Something went wrong!");  // Send generic error response
+    console.error(err.stack);
+    res.status(500).send("Something went wrong!");
 });
 
-// Start the server and listen on the specified port
+// Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
