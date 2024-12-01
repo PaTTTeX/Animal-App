@@ -13,18 +13,18 @@ function Content() {
 
       <div className="row justify-content-center">
         {/* Card 1: Add Animal */}
-        <div className="col-md-4 mb-4">
-          <div className="card shadow-sm text-center">
+        <div className="col-md-4 mb-4 d-flex">
+          <div className="card shadow-sm text-center flex-fill">
             <div className="card-body py-5">
               <img
                 src={addImage}
                 alt="Add Animal"
                 className="img-fluid mb-3"
-                style={{ Height: 'auto', width: '100%' , objectFit: 'cover' }}
+                style={{ height: 'auto', width: '100%', objectFit: 'cover' }}
               />
-              <h5 className="card-title">Add an Animal</h5><br></br>
+              <h5 className="card-title">Add an Animal</h5><br />
               <p className="card-text">Easily add new animal information to the system.</p>
-              <br></br>
+              <br />
               <Link to="/add" className="btn btn-primary">
                 Go to Add Page
               </Link>
@@ -33,16 +33,16 @@ function Content() {
         </div>
 
         {/* Card 2: Edit Animals */}
-        <div className="col-md-4 mb-4">
-          <div className="card shadow-sm text-center">
-          <div className="card-body py-5">
+        <div className="col-md-4 mb-4 d-flex">
+          <div className="card shadow-sm text-center flex-fill">
+            <div className="card-body py-5">
               <img
                 src={viewImage}
-                alt="View Animals"
+                alt="Edit Animals"
                 className="img-fluid mb-3"
-                style={{ Height: 'auto', width: '100%' , objectFit: 'cover' }}
+                style={{ height: 'auto', width: '100%', objectFit: 'cover' }}
               />
-              <h5 className="card-title">Edit Animals</h5><br></br>
+              <h5 className="card-title">Edit Animals</h5><br />
               <p className="card-text">Browse and Edit/Delete the list of animals in the database.</p>
               <Link to="/view" className="btn btn-success">
                 Go to View Page
